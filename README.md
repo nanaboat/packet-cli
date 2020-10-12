@@ -2,15 +2,15 @@
 
 [![GitHub release](https://img.shields.io/github/release/packethost/packet-cli/all.svg?style=flat-square)](https://github.com/packethost/packet-cli/releases)
 [![Go Report Card](https://goreportcard.com/badge/github.com/packethost/packet-cli)](https://goreportcard.com/report/github.com/packethost/packet-cli)
-[![Slack](https://slack.packet.com/badge.svg)](https://slack.packet.com)
-[![Twitter Follow](https://img.shields.io/twitter/follow/packethost.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=packethost)
+[![Slack](https://slack.equinixmetal.com/badge.svg)](https://slack.equinixmetal.com)
+[![Twitter Follow](https://img.shields.io/twitter/follow/packethost.svg?style=social&label=Follow)](https://twitter.com/intent/follow?screen_name=equinixmetal)
 ![](https://img.shields.io/badge/Stability-Maintained-green.svg)
 
-This repository is [Maintained](https://github.com/packethost/standards/blob/master/maintained-statement.md) meaning that this software is supported by Packet and its community - available to use in production environments.
+This repository is [Maintained](https://github.com/packethost/standards/blob/master/maintained-statement.md) meaning that this software is supported by Equinix Metal and its community - available to use in production environments.
 
 ## Table of Contents
 
-* [Packet Command Line Interface](#packet-command-line-interface)
+* [Equinix Metal Command Line Interface](#packet-command-line-interface)
 * [Requirements](#requirements)
 * [Supported Platforms](#supported-platforms)
 * [Installation](#installation)
@@ -23,39 +23,71 @@ This repository is [Maintained](https://github.com/packethost/standards/blob/mas
 * [Example Syntax](#example-syntax)
 * [Support](#support)
 
-## Packet Command Line Interface
+## Equinix Metal Command Line Interface
 
-[Packet](https://www.packet.net/) provides an API-driven bare metal platform that combines the automation experience of the cloud with the benefits of physical, bare metal servers.
+[Packet is now Equinix Metal!](https://blog.equinix.com/blog/2020/10/06/equinix-metal-metal-and-more/), keep an eye on this project for future project and command line name changes.
 
-The Packet CLI wraps the [Packet Go SDK](https://github.com/packethost/packngo) allowing interaction with Packet platform from a command-line interface.
+[Equinix Metal](https://metal.equinix.com/) provides an API-driven bare metal platform that combines the automation experience of the cloud with the benefits of physical, bare metal servers.
+
+The Equinix Metal CLI wraps the [Equinix Metal Go SDK](https://github.com/packethost/packngo) allowing interaction with Equinix Metal platform from a command-line interface.
 
 ## Requirements
 
-* Packet authentication token.
-* Packet CLI [binaries](https://github.com/packethost/packet-cli/releases).
+* Equinix Metal authentication token.
+* Equinix Metal CLI [binaries](https://github.com/packethost/packet-cli/releases).
 
 ## Supported Platforms
 
-The [Packet CLI binaries](https://github.com/packethost/packet-cli/releases) are available for Linux, Windows, and Mac OS X for various architectures including ARM on Linux.
+The [Equinix Metal CLI binaries](https://github.com/packethost/packet-cli/releases) are available for Linux, Windows, and Mac OS X for various architectures including ARM on Linux.
 
 ## Installation
 
-Download the appropriate Packet CLI binaries for your platform to the desired location and rename it to `packet`. If the directory is not already in your `PATH` environment variable, then it will need to be added.
+
+### Install binary from Source
+
+Download the appropriate Equinix Metal CLI package, build and install them. Type the following in your terminal:
+
+```
+GO111MODULE=on go get github.com/packethost/packet-cli
+```
+
+You can find the installed executable/binary in either `$GOPATH/bin` or `$HOME/go/bin` folder.
+
+Rename binary from `packet-cli` to `packet`. 
+
+### Install binary from Release Download
+
+Download the appropriate Equinix Metal CLI binaries for your platform to the desired location,`chmod` it and rename it to `packet`. 
 
 ### Configuring your Path
+
+If the directory where your binaries were installed is not already in your `PATH` environment variable, then it will need to be added.
+Choose the steps to follow for your platform to add directory to `PATH`.
 
 <details>
   <summary>Configure your path in Linux</summary>
 
 ## Linux
 
-If you plan to run the Packet CLI in a shell on Linux and placed the binary in /home/YOUR-USER-NAME/packet-cli/, then type the following into your terminal:
+If you plan to run the Equinix Metal CLI in a shell on Linux and placed the binary in `/home/YOUR-USER-NAME/packet-cli/`, then type the following into your terminal:
 
 ```
 export PATH=$PATH:/home/$USER/packet-cli
 ```
 
-You can view the current value of $PATH by running:
+If you plan to run the Packet CLI in a shell on Linux and your binary is in `$GOPATH/bin` or `$HOME/go/bin`, then type the following into your terminal:
+
+```
+export PATH=$PATH:$GOPATH/bin
+```
+
+or:
+
+```
+export PATH=$PATH:$HOME/go/bin
+```
+
+You can view the current value of `$PATH` by running:
 
 ```
 echo $PATH
@@ -67,13 +99,25 @@ echo $PATH
 
 ### Mac OS X
 
-If you plan to run the Packet CLI in a shell on a Mac, download the `darwin` binary and placed the it in /Users/YOUR-USER-NAME/packet-cli/, then type the following into your terminal.
+If you plan to run the Equinix Metal CLI in a shell on a Mac, download the `darwin` binary and placed the it in `/Users/YOUR-USER-NAME/packet-cli/`, then type the following into your terminal.
 
 ```
 export PATH=$PATH:/Users/$USER/packet-cli
 ```
 
-You can view the current value of $PATH by running:
+If you plan to run the Packet CLI in a shell on a Mac and your binary is in `$GOPATH/bin` or `$HOME/go/bin`, then type the following into your terminal:
+
+```
+export PATH=$PATH:$GOPATH/bin
+```
+
+or:
+
+```
+export PATH=$PATH:$HOME/go/bin
+```
+
+You can view the current value of `$PATH` by running:
 
 ```
 echo $PATH
@@ -92,10 +136,22 @@ The binary can be trusted by enabling "App Store and identified developers" in "
 
 ### Windows
 
-If you plan to run the Packet CLI in PowerShell on Windows and placed the binary in c:\packet-cli, then type the following into PowerShell:
+If you plan to run the Equinix Metal CLI in PowerShell on Windows and placed the binary in `c:\packet-cli`, then type the following into PowerShell:
 
 ```
 $env:Path += ";c:\packet-cli"
+```
+
+If you plan to run the Equinix Metal CLI in PowerShell on Windows and your binary is in `$GOPATH/bin` or `$HOME/go/bin`, then type the following into PowerShell:
+
+```
+$setx PATH "$($env:path);$GOPATH\bin"
+```
+
+or:
+
+```
+$setx PATH "$($env:path);$HOME\go\bin"
 ```
 
 The path can be viewed by running:
@@ -114,7 +170,7 @@ Check `packet completion -h` for instructions to use in other shells.
 
 ## Authentication
 
-The Packet authentication token can be stored in the `$PACKET_TOKEN` environment variable or in JSON or YAML configuration files. The configuration file path can be overridden with the `--config` flag.
+The Equinix Metal authentication token can be stored in the `$PACKET_TOKEN` environment variable or in JSON or YAML configuration files. The configuration file path can be overridden with the `--config` flag.
 
 Environment variable:
 
@@ -138,12 +194,12 @@ JSON configuration file - `$HOME/.packet-cli.json`:
 }
 ```
 
-After installing Packet CLI, verify the installation by executing `packet` or `packet.exe`. You should see the default output:
+After installing Equinix Metal CLI, verify the installation by executing `packet` or `packet.exe`. You should see the default output:
 
 
 ```bash
 $ packet
-Command line interface for Packet Host
+Command line interface for Equinix Metal
 
 Usage:
   packet [command]
@@ -172,7 +228,7 @@ Use "packet [command] --help" for more information about a command.
 
 ## Includes and Excludes
 
-Packet API resource responses may have related resources. These related
+Equinix Metal API resource responses may have related resources. These related
 resources can be embedded in the result or referred. Referred resources will
 only include a `Href` value, which includes the unique ID of the resource.
 Embedded resources will be represented with their full API value, which may
@@ -266,4 +322,4 @@ Details on all available commands can be found by visiting the reference [pages]
 For help with this package:
 
 * Open up a GitHub issue [here](https://github.com/packethost/packet-cli/issues).
-* Contact the [Packet Community Slack](http://slack.packet.net) or on Freenode IRC in the #packethost channel.
+* Contact the [Equinix Metal Community Slack](http://slack.equinixmetal.net) or on Freenode IRC in the #equinixmetal channel.
